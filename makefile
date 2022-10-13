@@ -23,3 +23,5 @@ fly:
 	#then you can run make dev,
 	#set DATABASE_URL with correct username and password
 	#and do anything with the database you need to
+flyshell:
+	flyctl ssh console
