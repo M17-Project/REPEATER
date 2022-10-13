@@ -6,9 +6,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>{{ title }}</title>
+		<link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css">
 		<link rel="stylesheet" href="{% static 'base.css' %}" type="text/css" />
 	</head>
 	<body>
+		{% block nav %}
+		{% endblock %} 
 		{% block content %}
 		{% endblock %} 
 		<!--<script src="{% static 'index.js' %}"></script>-->
