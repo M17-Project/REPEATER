@@ -22,7 +22,7 @@ class DuplexFrequencyPair(models.Model):
     in_freq = models.FloatField()
     out_freq = models.FloatField()
     def __str__(self):
-        offset = self.out_freq-self.in_freq
+        offset = self.in_freq-self.out_freq
         b1,b2 = get_band(self.in_freq),get_band(self.out_freq)
         sign = ""
         if offset >= 0:
