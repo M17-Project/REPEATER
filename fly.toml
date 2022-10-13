@@ -45,4 +45,4 @@ processes = []
 
 [[statics]]
   guest_path = "/app/_staticfiles"
-  url_prefix = "/s/"
+  url_prefix = "/s"
