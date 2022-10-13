@@ -6,6 +6,23 @@ Repeater Entry Provides Extremely Accurate and True Estimates of Range
 
 The repeater database to end all repeater databases. 
 
+Amateur Radio operators often use repeaters to allow multiple people
+with small, low power radios to communicate over a larger area than they
+would otherwise be able to.
+
+To use these repeaters, ham radio operators need to know certain details,
+such as name, frequency, location, and access details. They then program
+these settings in their radios and are able to use the repeater.
+
+This database is meant to replace the existing databases like repeaterbook
+and others, because their data is often incomplete, insufficient,
+outdated, or just flat-out wrong. Moreover, many of these existing
+databases are focused on making money by collecting data that users
+submit and then trying to claim copyright on that data. Repeater owners
+don't have a good or easy way to update databases with details about their repeaters.
+
+This project is all about fixing that.
+
 Goals/Values:
 -------------
 1. Provide information for Amateur Radio (and possible other) operators
