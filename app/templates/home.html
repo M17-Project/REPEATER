@@ -8,6 +8,6 @@
         <br>
 	<p>There are {{ numrepeaters }} repeaters in the database.</p>
 	<p>Many of the links here will not work yet. WIP!</p>
-        <p><a href="#"><i>Add a repeater</i></a><a href="#"><b>Browse the database&rarr;</b></a></p>
+	<p><a href="{% url 'repeater_new' %}"><i>Add a repeater</i></a><a href="{% url 'repeaters' %}"><b>Browse the database&rarr;</b></a></p>
 </header>
 {% endblock %}

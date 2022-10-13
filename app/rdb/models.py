@@ -39,7 +39,7 @@ class Node(models.Model):
     callsign = models.CharField(max_length=128)
     owner = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
     tags = models.ManyToManyField("Tag")
-    add = models.DateTimeField(auto_now_add=True)
+    added = models.DateTimeField(auto_now_add=True)
 
     lat = models.FloatField()
     lon = models.FloatField()
