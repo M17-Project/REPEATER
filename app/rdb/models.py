@@ -42,7 +42,7 @@ class Band(models.Model):
     def bw(self):
         return self.frequency_hi - self.frequency_low
     def __str__(self):
-        return "%s (%s, %f-%f)"%(self.name, self.frequency_lo, self.frequency_hi)
+        return "%s (%f-%f)"%(self.name, self.frequency_lo, self.frequency_hi)
 
 class LicenseType(Tag):
     pass
