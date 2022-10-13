@@ -24,9 +24,6 @@ However, for now, network information should not be included.
 
 Deployments
 -----------
-TBD
+This repo will automatically deploy the `main` branch to https://repeater.m17project.org
 
 
-CI/CD
------
-TBD
