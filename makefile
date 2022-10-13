@@ -8,3 +8,5 @@ dev:
 		-v ${shell pwd}/app/:/app/\
 		repeater /bin/bash
 
+fly:
+	flyctl deploy --local-only
