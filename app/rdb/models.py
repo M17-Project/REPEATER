@@ -1,7 +1,15 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-#All frequencies in MHz, please
+#All frequencies in MHz, 
+#distances and altitudes in m
+#lat,lon in wgs84
+
+class DuplexFrequencyPair(models.Model):
+    tags = models.ManyToManyField("Tag")
+    in_freq = models.FloatField()
+    out_freq = models.FloatField()
+
 
 class Node(models.Model):
     callsign = models.CharField(max_length=128)
@@ -9,11 +17,9 @@ class Node(models.Model):
     tags = models.ManyToManyField("Tag")
     add = models.DateTimeField(auto_now_add=True)
 
-    #WGS84 please (if you don't know for sure, you're probably fine)
     lat = models.FloatField()
     lon = models.FloatField()
     alt = models.FloatField()
-
 
     @property
     def location(self):
@@ -24,6 +30,10 @@ class Node(models.Model):
         except:
             owner = "<no owner>"
         return "[%s] %s %s"%(owner, self.callsign, str(self.location))
+
+class Repeater(Node):
+    freq = models.ManyToManyField("DuplexFrequencyPair")
+    access_information = models.TextField() #temp
 
 class Tag(models.Model):
     name = models.CharField(max_length=128)
