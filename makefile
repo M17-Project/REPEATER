@@ -12,7 +12,8 @@ fly:
 	flyctl deploy --local-only
 
 
-#dboverride:
+dboverride:
+	echo "read this"
 	#run following on host
 	#flyctl proxy 5432 -a repeater-db
 	#socat TCP-LISTEN:5433,fork TCP:localhost:5432
