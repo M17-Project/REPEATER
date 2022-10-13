@@ -55,7 +55,7 @@ changes to your fork on github, and open a pull request to the main repo
 under the M17Project organization.
 
 As a general rule: If you get stuck or confused, spend fifteen solid
-minutes trying hard, and then reach out on the discord channel in the #repeaterdb 
-room: https://discord.gg/gxgsnbTF.  
+minutes trying hard, and then reach out on the M17 discord channel in the #repeaterdb 
+room: https://discord.gg/h9SFBJBzx8
 
 Don't suffer for hours, people would love to help!
