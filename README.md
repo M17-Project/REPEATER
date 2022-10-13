@@ -27,3 +27,35 @@ Deployments
 This repo will automatically deploy the `main` branch to https://repeater.m17project.org
 
 
+
+Development Instructions / HACKING
+----------------------------------
+This is easiest to work with in docker. To see what the make commands are
+doing, check out the `makefile` for the directory you run the command
+in. See also [makefiletutorial.com](https://makefiletutorial.com/) and
+the [makefile docs](https://www.gnu.org/software/make/manual/make.html).
+
+`make img` and `make dev` in the root directory here with this README
+will make a local docker image of the project and start it up with local
+files under `./app/` mapped into the container under `/app/`. `./app/`
+has another makefile which offers some quick options for interacting with
+django, such as a development server using djangos built-in runserver (`make`),
+and another using gunicorn which is a little closer to how it runs
+in production (`make gunicorn`).
+
+This docker setup means you can edit the source as you wish, and all the
+django tools and such are confined to the container. In the container
+shell.
+
+The general way you'd go about making changes is as follows:
+
+Fork this repo on Github, clone down your fork, check out a branch to
+work on, make changes to that local copy, commit those changes, push the
+changes to your fork on github, and open a pull request to the main repo
+under the M17Project organization.
+
+As a general rule: If you get stuck or confused, spend fifteen solid
+minutes trying hard, and then reach out on the discord channel in the #repeaterdb 
+room: https://discord.gg/gxgsnbTF.  
+
+Don't suffer for hours, people would love to help!
