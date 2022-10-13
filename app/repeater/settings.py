@@ -26,7 +26,7 @@ DEV_SECRET_KEY = 'django-insecure-=2_vwnsj0#_bn40*w+ug*^-(=e#50pnjv9v&i2cuxqx%5u
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', DEV_SECRET_KEY)
 STATIC_URL = '/s/'
-STATIC_ROOT = os.path.join(BASE_DIR, '_staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
