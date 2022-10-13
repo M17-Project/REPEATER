@@ -1,14 +1,38 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+import math
 #All frequencies in MHz, 
 #distances and altitudes in m
 #lat,lon in wgs84
+
+def get_band(freq):
+    if freq > 400 and freq < 470:
+        return "70cm"
+    if freq > 140 and freq < 148:
+        return "2m"
+
+def get_std_offset(band):
+    if band == "2m":
+        return 0.6
+    if band == "70cm":
+        return 5
 
 class DuplexFrequencyPair(models.Model):
     tags = models.ManyToManyField("Tag")
     in_freq = models.FloatField()
     out_freq = models.FloatField()
+    def __str__(self):
+        offset = self.out_freq-self.in_freq
+        b1,b2 = get_band(self.in_freq),get_band(self.out_freq)
+        sign = ""
+        if offset >= 0:
+            sign = "+"
+        print(b1,b2,offset)
+        if b1==b2 and math.isclose(get_std_offset(b1), abs(offset)):
+            if offset < 0:
+                sign = "-"
+            return "%g%s"%(self.out_freq, sign)
+        return "%g%s%g"%(self.out_freq, sign, offset)
 
 
 class Node(models.Model):
@@ -52,7 +76,7 @@ class Band(models.Model):
     def bw(self):
         return self.frequency_hi - self.frequency_low
     def __str__(self):
-        return "%s (%f-%f)"%(self.name, self.frequency_lo, self.frequency_hi)
+        return "%s (%g-%g)"%(self.name, self.frequency_lo, self.frequency_hi)
 
 class LicenseType(Tag):
     pass
