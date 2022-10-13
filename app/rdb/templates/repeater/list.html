@@ -1,0 +1,8 @@
+{% extends 'base_with_nav.html' %}
+{% block content %}
+
+{% for repeater in repeaters %}
+{{ repeater }} {{repeater.freq}} {{repeater.access_information}}
+{% endfor %}
+
+{% endblock %}

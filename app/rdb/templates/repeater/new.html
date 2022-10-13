@@ -1,0 +1,8 @@
+{% extends 'base_with_nav.html' %}
+{% block content %}
+<form action="/repeater/new/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
