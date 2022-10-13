@@ -29,7 +29,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField(null=True)
     def __str__(self):
-        return "%s"%(name)
+        return "%s"%(self.name)
 
 class Band(models.Model):
     name = models.CharField(max_length=128)

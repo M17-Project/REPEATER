@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% block nav %}
-        <nav>
-            <a href="/"><img alt="Logo" src="https://via.placeholder.com/200x70?text=Logo" height="70"></a>
-            <ul>
-                <li>Menu Item 1</li>
-                <li><a href="#">Menu Item 2</a></li>
-                <li><a href="#">Dropdown Menu Item</a>
-                    <ul>
-                        <li><a href="#">Sublink with a long name</a></li>
-                        <li><a href="#">Short sublink</a></li>
-                    </ul>
+<nav>
+        <a href="/">REPEATER/</a>
+        <ul>
+                <li><a href="https://m17project.org">M17Project.org<a></li>
+                <li><a href="https://github.com/M17-Project/REPEATER">source@github</a></li>
+                <li><a href="#">Data</a>
+                        <ul>
+                                <li><a href="#">Database Dumps</a></li>
+                                <li><a href="#">API and docs</a></li>
+                                <li><a href="#">Data Standards</a></li>
+                                <li><a href="#">Other ways to share data</a></li>
+                        </ul>
                 </li>
-            </ul>
-        </nav>
+        </ul>
+</nav>
 {% endblock %}

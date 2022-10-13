@@ -1,4 +1,6 @@
-body {
+nav {
+	    max-width: var(--width-content);
+	    margin: 0 auto;
 }
 h3 {
 	color: grey !important;
