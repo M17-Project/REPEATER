@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from rdb.models import *
+for each in [Node,Tag,Band,LicenseType]:
+    admin.site.register(each)
