@@ -35,7 +35,7 @@ STATICFILES_DIRS = (
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS.extend(
         filter(
             None,
@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rdb',
+    'rest_framework',
+    'rest',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +133,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+APPEND_SLASH=False
