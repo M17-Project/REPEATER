@@ -48,11 +48,17 @@ def export_csv(request):
     s_no = 1
 
     for rep in repeater_list:
+        # Extract freq_out from req.freq model
+        frequency_out = ''
+        for frequency in rep.freq.all():
+            frequency_out+=str(frequency)
+            # Adding a comma here in case there maybe multiple freq_out
+            frequency_out+=','
         writer.writerow([s_no,
             rep,
             rep.owner,
             rep.callsign,
-            rep.freq,
+            frequency_out,
             str(rep.location),
             rep.access_information,
             rep.added,
