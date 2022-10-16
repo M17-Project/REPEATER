@@ -1,7 +1,11 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 from rdb.models import Node, Repeater
 from rdb.forms import RepeaterForm
+
+import csv
+import datetime
 
 def index(request):
     ctx = {"numrepeaters": Node.objects.count()
@@ -32,3 +36,29 @@ def repeater_new(request):
             'form':form
             }
     return render(request = request, template_name="repeater/new.html", context=ctx )
+
+def export_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition']='attachment; filename=RepeaterData'+str(datetime.datetime.now())+'.csv'
+
+    writer = csv.writer(response)
+    writer.writerow(['Index', 'Repeater','Owner', 'Callsign', 'Frequency', 'Location','AccessInformation', 'Added', 'Tags' ])
+
+    repeater_list = Repeater.objects.all()
+    s_no = 1
+
+    for rep in repeater_list:
+        writer.writerow([s_no,
+            rep,
+            rep.owner,
+            rep.callsign,
+            rep.freq,
+            str(rep.location),
+            rep.access_information,
+            rep.added,
+            rep.tags,])
+        s_no+=1
+    # Reset S.no in case exported multiple times
+    s_no=1
+
+    return response
