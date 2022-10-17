@@ -23,6 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('rdb/', include('rdb.urls')),
     path('', include('rdb.urls')),
+    path('api', include('rest.urls')),
+    path('api/', include('rest.urls')),
+
     re_path(r"^" +settings.STATIC_URL.strip('/')  + r"/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}), 
     #fly static files can take a long time to
     # settle on a deploy, and meanwhile django will 404 otherwise. So
