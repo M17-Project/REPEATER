@@ -37,14 +37,29 @@ def repeater_new(request):
             }
     return render(request = request, template_name="repeater/new.html", context=ctx )
 
+# Exporting repeater data to a CSV file in CHIRP format
 def export_csv(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition']='attachment; filename=RepeaterData'+str(datetime.datetime.now())+'.csv'
 
     writer = csv.writer(response)
-    writer.writerow(['Index', 'Repeater','Owner', 'Callsign', 'Frequency', 'Location','AccessInformation', 'Added', 'Tags' ])
 
+    # Populating top row with headers
+    writer.writerow([
+                        'Index',
+                        'Repeater',
+                        'Owner',
+                        'Callsign',
+                        'Frequency',
+                        'Location',
+                        'AccessInformation',
+                        'Added',
+                        'Tags'
+                    ])
+
+    # Get all instances of Repeater objects
     repeater_list = Repeater.objects.all()
+    # Initialising serial number for 1st column of the CSV
     s_no = 1
 
     for rep in repeater_list:
@@ -54,17 +69,21 @@ def export_csv(request):
             frequency_out+=str(frequency)
             # Adding a comma here in case there maybe multiple freq_out
             frequency_out+=','
-        writer.writerow([s_no,
-            rep,
-            rep.owner,
-            rep.callsign,
-            frequency_out,
-            str(rep.location),
-            rep.access_information,
-            rep.added,
-            rep.tags,])
+
+        # Writing Repeater data in a .CSV file
+        writer.writerow([
+                            s_no,
+                            rep,
+                            rep.owner,
+                            rep.callsign,
+                            frequency_out,
+                            str(rep.location),
+                            rep.access_information,
+                            rep.added,
+                            rep.tags
+                        ])
         s_no+=1
-    # Reset S.no in case exported multiple times
+    # Reset serial number in case exported multiple times
     s_no=1
 
     return response
