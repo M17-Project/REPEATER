@@ -1,7 +1,11 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 from rdb.models import Node, Repeater
 from rdb.forms import RepeaterForm
+
+import csv
+import datetime
 
 def index(request):
     ctx = {"numrepeaters": Node.objects.count()
@@ -32,3 +36,54 @@ def repeater_new(request):
             'form':form
             }
     return render(request = request, template_name="repeater/new.html", context=ctx )
+
+# Exporting repeater data to a CSV file in CHIRP format
+def export_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition']='attachment; filename=RepeaterData'+str(datetime.datetime.now())+'.csv'
+
+    writer = csv.writer(response)
+
+    # Populating top row with headers
+    writer.writerow([
+                        'Index',
+                        'Repeater',
+                        'Owner',
+                        'Callsign',
+                        'Frequency',
+                        'Location',
+                        'AccessInformation',
+                        'Added',
+                        'Tags'
+                    ])
+
+    # Get all instances of Repeater objects
+    repeater_list = Repeater.objects.all()
+    # Initialising serial number for 1st column of the CSV
+    s_no = 1
+
+    for rep in repeater_list:
+        # Extract freq_out from req.freq model
+        frequency_out = ''
+        for frequency in rep.freq.all():
+            frequency_out+=str(frequency)
+            # Adding a comma here in case there maybe multiple freq_out
+            frequency_out+=','
+
+        # Writing Repeater data in a .CSV file
+        writer.writerow([
+                            s_no,
+                            rep,
+                            rep.owner,
+                            rep.callsign,
+                            frequency_out,
+                            str(rep.location),
+                            rep.access_information,
+                            rep.added,
+                            rep.tags
+                        ])
+        s_no+=1
+    # Reset serial number in case exported multiple times
+    s_no=1
+
+    return response

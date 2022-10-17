@@ -1,6 +1,8 @@
 {% extends 'base_with_nav.html' %}
 {% block content %}
 
+<a href="{% url 'export_csv' %}">Export CSV</a>
+<br></br>
 {% for repeater in repeaters %}
 {{ repeater }} {{repeater.freq}} {{repeater.access_information}}
 {% endfor %}
