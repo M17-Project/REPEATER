@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rdb',
     'rest_framework',
     'rest',
+    'django_q'
 ]
 
 MIDDLEWARE = [
@@ -133,5 +134,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+Q_CLUSTER = {
+    'name': 'app',
+    'workers': 8,
+    'recycle': 500,
+    'timeout': 60,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Django Q',
+    'redis': {
+        'host': '127.0.0.1',
+        'port': 6379,
+        'db': 0, }
+}
 
 
